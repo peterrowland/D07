@@ -23,7 +23,18 @@
 # Note: python does not have a ++ operator, but += works.
 def match_ends(words):
     # +++your code here+++
-    return
+    # use list comp to make list of len > 2
+    filter_words = [x for x in words if len(x)>=2]
+    # for each item in filtered list: test list[0] == list[-1]
+    match_list = []
+
+    for word in filter_words:
+        if word[0] == word[-1]:
+            match_list.append(word)
+            # match_list += word # next try pop from list
+    # add to match list
+    # len of match list
+    return len(match_list)
 
 
 # B. front_x
@@ -34,8 +45,14 @@ def match_ends(words):
 # Hint: this can be done by making 2 lists and sorting each of them
 # before combining them.
 def front_x(words):
-    # +++your code here+++
-    return
+    # pop all strings starting with x to x_list
+    x_strings = [x for x in words if x[0] == 'x']
+    not_x_strings = [x for x in words if x[0] != 'x']
+    # sort in not_x list  and x  list
+    x_strings.sort()
+    not_x_strings.sort()
+    # append in list to x list
+    return x_strings + not_x_strings
 
 
 # C. sort_last
@@ -45,8 +62,13 @@ def front_x(words):
 # [(2, 2), (1, 3), (3, 4, 5), (1, 7)]
 # Hint: use a custom key= function to extract the last element form each tuple.
 def sort_last(tuples):
-    # +++your code here+++
-    return
+    # custom Key?? Reading
+    def by_last_key(t):
+        return t[-1]
+
+    return sorted(tuples, key = by_last_key)
+
+
 
 
 # Simple provided test() function used in main() to print
@@ -56,11 +78,12 @@ def test(got, expected):
         prefix = ' OK '
     else:
         prefix = '  X '
-    print('%s got: %s expected: %s'.format(prefix, repr(got), repr(expected)))
+    print('{0} got: {1} expected: {2}'.format(prefix, repr(got), repr(expected)))
 
 
 # Calls the above functions with interesting inputs.
 def main():
+    print()
     print('match_ends')
     test(match_ends(['aba', 'xyz', 'aa', 'x', 'bbb']), 3)
     test(match_ends(['', 'x', 'xy', 'xyx', 'xx']), 2)

@@ -18,28 +18,30 @@
 def capitalize_nested(list):
 
     # list loop
+    cap_list = []
     for item in list:
-        if type(item) == type([]):
-            # for itm in item:
-                # if type(item) == type([]):
-            return capitalize_nested(item)
-                    # test that it reads
+        if type(item) == type(list):
+            capitalize_nested(item)
+            # test that it reads
         else:
             capitalized = item.capitalize()
-            # print(capitalized)
-            return capitalized
+            print(capitalized)
 
+
+    return capitalized
+
+
+# if list: enter innerloop on sublist
+    # run capitalize on sub list
+# if string: run capitalize on list[n]
+
+# return capitalized list
 
 ##############################################################################
 def main():
 
     # capitalize_nested(['a','b','c',['a','b']])
-    l = ['apple', ['bear','sloth'], 'cat']
-    # for item in l:
-    print(capitalize_nested(l))
-
-    #TODO: try calling and printing loop down here first
-
+    print(capitalize_nested(['apple', ['bear','sloth'], 'cat']))
 
 if __name__ == '__main__':
     main()
